@@ -55,5 +55,5 @@
   "options": {
     "typeAware": true
   },
-  "ignorePatterns": ["build/**", ".react-router/**"]
+  "ignorePatterns": ["build/**", ".react-router/**", "**/*.module.css.d.ts"]
 }

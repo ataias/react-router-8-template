@@ -1,6 +1,6 @@
 [[language]]
 name = "tsx"
-language-servers = ["tsgo", "oxlint", "typos", "cssmodules"]
+language-servers = ["tsgo", "oxlint", "typos"]
 auto-format = true
 formatter = { command = "bash", args = [
   "-c",
@@ -27,7 +27,7 @@ formatter = { command = "bash", args = [
 
 [[language]]
 name = "jsx"
-language-servers = ["tsgo", "oxlint", "typos", "cssmodules"]
+language-servers = ["tsgo", "oxlint", "typos"]
 auto-format = true
 formatter = { command = "bash", args = [
   "-c",
@@ -100,10 +100,6 @@ args = ["exec", "bash-language-server", "start"]
 command = "pnpm"
 args = ["exec", "vscode-css-language-server", "--stdio"]
 config = { css = { validate = true } }
-
-[language-server.cssmodules]
-command = "pnpm"
-args = ["exec", "cssmodules-language-server"]
 
 [language-server.stylelint]
 command = "pnpm"
