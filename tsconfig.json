@@ -14,6 +14,11 @@
     "skipLibCheck": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noEmit": true
+    "noEmit": true,
+    // Here rather than in tsconfig.vite.json: cssmodules-language-server reads paths
+    // from the nearest tsconfig.json and doesn't follow project references.
+    "paths": {
+      "~/*": ["./app/*"]
+    }
   }
 }
