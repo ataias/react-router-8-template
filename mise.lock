@@ -115,6 +115,29 @@ url = "https://nodejs.org/dist/v26.12.0/node-v26.12.0-darwin-x64.tar.gz"
 checksum = "sha256:50efaf01a08c520b4bbe499c09a8c5a5c370002c419c0d9da2c6815d3066a453"
 url = "https://nodejs.org/dist/v26.12.0/node-v26.12.0-win-x64.zip"
 
+[[tools."packslip:ataias/helix"]]
+version = "26.10.1"
+backend = "packslip:ataias/helix"
+specifiers = ["26.10.1"]
+
+[tools."packslip:ataias/helix"."platforms.linux-arm64"]
+checksum = "sha256:50cf0b084714260aa47fd92752aec37beaa023f1ef23322d9534238395560c55"
+url = "https://github.com/ataias/helix/releases/download/v26.10.1/helix-26.10.1-aarch64-unknown-linux-gnu.tar.xz"
+signer = "sigstore-oidc:https://github.com/ataias/helix/.github/workflows/release.yml"
+repository_ids = { repository = "1426271845", owner = "1009034" }
+
+[tools."packslip:ataias/helix"."platforms.linux-x64"]
+checksum = "sha256:39569a3bb43971f9adcc1e77ddb2d47c7b7e706c22c8b5fda7fec34cc6cc0ef9"
+url = "https://github.com/ataias/helix/releases/download/v26.10.1/helix-26.10.1-x86_64-unknown-linux-gnu.tar.xz"
+signer = "sigstore-oidc:https://github.com/ataias/helix/.github/workflows/release.yml"
+repository_ids = { repository = "1426271845", owner = "1009034" }
+
+[tools."packslip:ataias/helix"."platforms.macos-arm64"]
+checksum = "sha256:228de378a08d90a786447eedaac6f75eae6a3880cb02dc3e48f7339f2ed5d4eb"
+url = "https://github.com/ataias/helix/releases/download/v26.10.1/helix-26.10.1-aarch64-apple-darwin.tar.xz"
+signer = "sigstore-oidc:https://github.com/ataias/helix/.github/workflows/release.yml"
+repository_ids = { repository = "1426271845", owner = "1009034" }
+
 [[tools.pnpm]]
 version = "12.14.0"
 backend = "aqua:pnpm/pnpm"
