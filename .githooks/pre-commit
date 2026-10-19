@@ -8,7 +8,7 @@ pnpm -s lint:css
 pnpm -s format:check
 rumdl check --quiet .
 tombi lint --quiet
-shellcheck .githooks/* .mise/no-bun/bin/* .mise/tasks/*/*
+shellcheck .githooks/* .mise/tasks/*/*
 shfmt -d .githooks .mise
 pnpm -s typecheck
 pnpm -s build
