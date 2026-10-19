@@ -1,0 +1,5 @@
+[global]
+# oxfmt formats Markdown and leaves prose unwrapped, so don't enforce a line length.
+disable = ["MD013"]
+# Vendored agent docs (.agents/) and Next.js's generated AGENTS.md.
+exclude = [".agents", "AGENTS.md"]

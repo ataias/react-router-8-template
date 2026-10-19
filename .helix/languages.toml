@@ -1,0 +1,126 @@
+[[language]]
+name = "tsx"
+language-servers = ["tsgo", "oxlint", "typos", "cssmodules"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.tsx',
+] }
+
+[[language]]
+name = "typescript"
+language-servers = ["tsgo", "oxlint", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.ts',
+] }
+
+[[language]]
+name = "javascript"
+language-servers = ["tsgo", "oxlint", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.js',
+] }
+
+[[language]]
+name = "jsx"
+language-servers = ["tsgo", "oxlint", "typos", "cssmodules"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.jsx',
+] }
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "stylelint", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.css',
+] }
+
+# Same file types typos checks in `pnpm lint` - default language servers
+# re-listed alongside typos since a `language-servers` override replaces rather
+# than merges with Helix's built-in defaults.
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "rumdl", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.md',
+] }
+
+[[language]]
+name = "yaml"
+language-servers = ["yaml-language-server", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.yaml',
+] }
+
+[[language]]
+name = "toml"
+language-servers = ["tombi", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.toml',
+] }
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server", "typos"]
+auto-format = true
+formatter = { command = "bash", args = [
+  "-c",
+  'cd "%{workspace_directory}" && exec pnpm exec oxfmt --stdin-filepath=buffer.json',
+] }
+
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server", "typos"]
+auto-format = true
+formatter = { command = "shfmt" }
+
+[language-server.tsgo]
+command = "pnpm"
+args = ["exec", "tsc", "--lsp", "--stdio"]
+
+[language-server.bash-language-server]
+command = "pnpm"
+args = ["exec", "bash-language-server", "start"]
+
+[language-server.vscode-css-language-server]
+command = "pnpm"
+args = ["exec", "vscode-css-language-server", "--stdio"]
+config = { css = { validate = true } }
+
+[language-server.cssmodules]
+command = "pnpm"
+args = ["exec", "cssmodules-language-server"]
+
+[language-server.stylelint]
+command = "pnpm"
+args = ["exec", "stylelint-language-server", "--stdio"]
+config = { stylelint = { validate = ["css"] } }
+
+[language-server.vscode-json-language-server]
+command = "pnpm"
+args = ["exec", "vscode-json-language-server", "--stdio"]
+
+[language-server.yaml-language-server]
+command = "pnpm"
+args = ["exec", "yaml-language-server", "--stdio"]
+
+[language-server.typos]
+command = "typos-lsp"
+
+[language-server.oxlint]
+command = "pnpm"
+args = ["exec", "oxlint", "--lsp"]

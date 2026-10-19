@@ -1,0 +1,28 @@
+#!/bin/sh
+# Installed by the postinstall script (git config core.hooksPath .githooks).
+# Pushes the current branch after each commit when a remote is configured.
+# Skip it for one commit with `GIT_NO_PUSH=1 git commit ...`.
+set -u
+
+[ "${GIT_NO_PUSH:-}" = 1 ] && exit 0
+
+# Detached HEAD (e.g. mid-rebase): nothing to push.
+branch=$(git symbolic-ref --quiet --short HEAD) || exit 0
+
+if git rev-parse --abbrev-ref '@{upstream}' >/dev/null 2>&1; then
+	set -- git push --quiet
+else
+	# No upstream yet: use origin, or the only remote if there's just one.
+	remotes=$(git remote)
+	if printf '%s\n' "$remotes" | grep -qx origin; then
+		remote=origin
+	elif [ -n "$remotes" ] && [ "$(printf '%s\n' "$remotes" | wc -l)" -eq 1 ]; then
+		remote=$remotes
+	else
+		exit 0
+	fi
+	set -- git push --quiet --set-upstream "$remote" "$branch"
+fi
+
+# A failed push (offline, diverged branch) shouldn't look like a failed commit.
+"$@" || echo "post-commit: push failed; the commit is saved locally." >&2

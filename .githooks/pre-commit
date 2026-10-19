@@ -1,0 +1,14 @@
+#!/bin/sh
+# Installed by the postinstall script (git config core.hooksPath .githooks).
+# Checks the working tree, not just the staged changes.
+set -eu
+
+pnpm -s lint
+pnpm -s lint:css
+pnpm -s format:check
+rumdl check --quiet .
+tombi lint --quiet
+shellcheck .githooks/* .mise/no-bun/bin/* .mise/tasks/*/*
+shfmt -d .githooks .mise
+pnpm -s typecheck
+pnpm -s build
