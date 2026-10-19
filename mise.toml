@@ -3,13 +3,13 @@ node = "26"
 pnpm = "12"
 # Stub bun/bunx so they fail in this repo: the project uses pnpm.
 bun = "path:.mise/no-bun"
-"github:tekumara/typos-lsp" = "latest"
-typos = "latest"
-marksman = "latest"
-rumdl = "latest"
-tombi = "latest"
-shellcheck = "latest"
-shfmt = "latest"
+"github:tekumara/typos-lsp" = "0.1"
+typos = "1"
+marksman = "2026-02-08"
+rumdl = "0.2"
+tombi = "1"
+shellcheck = "0.11"
+shfmt = "3"
 
 # mise only creates shims for installed versions, and a `path:` version doesn't
 # count, so link the stubs in as one: that gives bunx a shim too.
