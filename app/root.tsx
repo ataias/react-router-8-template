@@ -10,6 +10,9 @@ import {
 import type { Route } from "./+types/root";
 import "@picocss/pico/css/pico.classless.min.css";
 import "./app.css";
+import { timingMiddleware } from "./middleware/timing.client";
+
+export const clientMiddleware: Route.ClientMiddlewareFunction[] = [timingMiddleware];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
