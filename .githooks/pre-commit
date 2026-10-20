@@ -8,7 +8,16 @@ pnpm -s lint:css
 pnpm -s format:check
 rumdl check --quiet .
 tombi lint --quiet
-shellcheck .githooks/* .mise/tasks/*/*
-shfmt -d .githooks .mise
+# Shell scripts git can see, tracked or untracked but not ignored. Files deleted from
+# the working tree are still in the index, hence the -f test. shfmt -f prints the
+# path only when the extension or shebang says it's a shell script.
+set --
+while IFS= read -r f; do
+	if [ -f "$f" ] && [ -n "$(shfmt -f "$f")" ]; then set -- "$@" "$f"; fi
+done <<EOF
+$(git ls-files --cached --others --exclude-standard)
+EOF
+shellcheck "$@"
+shfmt -d "$@"
 pnpm -s typecheck
 pnpm -s build

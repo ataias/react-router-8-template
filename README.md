@@ -21,7 +21,6 @@ Install the dependencies and set up the SQLite database:
 
 ```bash
 cp .env.example .env
-mkdir -p data
 pnpm install
 pnpm db:migrate # push app/db/schema.ts to the database
 pnpm db:seed    # optional: reset and fill the todos table
