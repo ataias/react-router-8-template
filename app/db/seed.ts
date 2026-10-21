@@ -2,7 +2,7 @@
 import { drizzle } from "drizzle-orm/node-sqlite";
 import { reset, seed } from "drizzle-seed";
 import { env } from "../env.server.ts";
-import { todosTable } from "./schema.ts";
+import { expenditureTable, todosTable } from "./schema.ts";
 
 const db = drizzle(env.DB_FILE_NAME);
 
@@ -35,6 +35,19 @@ await seed(db, { todosTable }, { count: 12 }).refine((f) => ({
       // Non-overlapping ranges keep updatedAt after createdAt.
       createdAt: f.int({ minValue: daysAgo(30), maxValue: daysAgo(7) }),
       updatedAt: f.int({ minValue: daysAgo(7), maxValue: daysAgo(0) }),
+    },
+  },
+}));
+
+await reset(db, { expenditureTable });
+await seed(db, { expenditureTable }, { count: 12 }).refine((f) => ({
+  expenditureTable: {
+    columns: {
+      title: f.string(),
+      cost: f.int({
+        minValue: 1000,
+        maxValue: 10000,
+      }),
     },
   },
 }));

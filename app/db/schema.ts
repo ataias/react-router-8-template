@@ -7,3 +7,9 @@ export const todosTable = sqliteTable("todos_table", {
   createdAt: int().notNull(),
   updatedAt: int().notNull(),
 });
+
+export const expenditureTable = sqliteTable("expenditure_table", {
+  id: text().primaryKey(),
+  title: text().notNull(),
+  cost: int().notNull(),
+});
